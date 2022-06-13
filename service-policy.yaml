@@ -1,0 +1,19 @@
+apiVersion: projectcalico.org/v3
+kind: NetworkPolicy
+metadata:
+  name: default.service-policy-example
+  namespace: storefront
+spec:
+  tier: default
+  selector: ''
+  serviceAccountSelector: ''
+  egress:
+    - action: Deny
+      protocol: TCP
+      source: {}
+      destination:
+        services:
+          name: nginx-default
+          namespace: default
+  types:
+    - Egress
